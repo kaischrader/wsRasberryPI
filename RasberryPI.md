@@ -2,7 +2,18 @@
 
 ## Installation
 
-Betriebssystem **Rasbian** von <https://www.raspberrypi.org/downloads/raspbian/> herunterladen. Für den headless Betrieb reicht das Image **Rasbian Buster Lite** aus.
+Software **Rasberry Pi Imager** für das passende Betriebssystem von <https://rasberrypi.com/software/> herunterladen. 
+
+In der Software sind zwei Optionen zu wählen:
+- Das Betriebssystem, das installiert werden soll
+- Die SD-Karte, auf die geschrieben werden soll
+
+Für den headless Betrieb reicht das Image **Rasberry Pi OS Lite (64-Bit)** aus.
+
+Nach Auswahl der beiden Optionen kann das Schreiben gestartet werden.
+
+
+**Rasberry PI OS**
 
 Zum Schreiben des Images auf die SD Karte kann die Software **Etcher** benutzt werden, die hier <https://www.balena.io/etcher/> zu finden ist.
 
