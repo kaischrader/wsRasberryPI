@@ -2,9 +2,12 @@
 
 ## Installation
 
+Unter Windows:
+
 Software **Rasberry Pi Imager** für das passende Betriebssystem von <https://rasberrypi.com/software/> herunterladen. 
 
 In der Software sind zwei Optionen zu wählen:
+
 - Das Betriebssystem, das installiert werden soll
 - Die SD-Karte, auf die geschrieben werden soll
 
@@ -15,14 +18,24 @@ Nach Auswahl der beiden Optionen kann das Schreiben gestartet werden.
 
 **Rasberry PI OS**
 
-Zum Schreiben des Images auf die SD Karte kann die Software **Etcher** benutzt werden, die hier <https://www.balena.io/etcher/> zu finden ist.
-
-Nach dem Flashen SD Karte in den Raspberry Pi einsetzen und den Computer booten. Initial muss zum Anmelden auf dem Pi der Benutzer **pi** mit dem Kennwort **raspberry** verwendet werden.
-
 Nun die Software `sudo raspi-config` starten.
 
-- SSH aktivieren
-- Hostname setzen: **entenhausen**
+System Options:
+
+Localisation Options
+
+- L1 Locale: de_DE.UTF-8 UTF-8, en_GB.UTF-8 UTF-8
+- L2 Timezone: Europa, Berlin
+- L3 Keyboard: PC-Tastatur mit 105 Tasten (intl)
+- L4 WLAN Country: DE Germany
+
+- Hostname: **dagobert**
+
+Interface Options:
+
+- SSH
+- 
+
 
 ## Absicherung
 
