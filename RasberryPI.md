@@ -4,7 +4,7 @@
 
 Unter Windows:
 
-Software **Rasberry Pi Imager** für das passende Betriebssystem von <https://rasberrypi.com/software/> herunterladen. 
+Software **Raspberry Pi Imager** für das passende Betriebssystem von <https://www.raspberrypi.com/software/> herunterladen. 
 
 In der Software sind zwei Optionen zu wählen:
 
@@ -15,41 +15,41 @@ Für den headless Betrieb reicht das Image **Rasberry Pi OS Lite (64-Bit)** aus.
 
 Nach Auswahl der beiden Optionen kann das Schreiben gestartet werden.
 
-
-**Rasberry PI OS**
+## Raspberry PI OS
 
 Nun die Software `sudo raspi-config` starten.
 
-System Options:
+#### System Options:
 
-Localisation Options
+- S1 Wireless LAN: SSID: **Entenhausen1**, Schlüssel: **Entenhausen_01**
+- S3 Password: **tuongvy01**
+- S4 Hostname: **dagobert**
+
+#### Interface Options:
+
+- I2 SSH: enable
+
+#### Localisation Options
 
 - L1 Locale: de_DE.UTF-8 UTF-8, en_GB.UTF-8 UTF-8
 - L2 Timezone: Europa, Berlin
 - L3 Keyboard: PC-Tastatur mit 105 Tasten (intl)
 - L4 WLAN Country: DE Germany
 
-- Hostname: **dagobert**
-
-Interface Options:
-
-- SSH
-- 
-
-
 ## Absicherung
 
-- Neuen Nutzer anlegen: **dagobert** **tuongvy01**
-  > sudo adduser `<username>`
-- sudo Privilegien einrichten
+- Neuen Nutzer anlegen: **kai**, **tuongvy01**
 
-  > sudo adduser `<username>` sudo
+```bash
+  sudo adduser `<username>`
 
-- pi-Benutzer löschen
+  // sudo Privilegien zuweisen
+  sudo adduser `<username>` sudo
 
-  > sudo pkill -u pi
-
-  > sudo deluser -remove-home pi
+  // pi-Benutzer löschen
+  sudo pkill -u pi
+  sudo deluser -remove-home pi
+```  
 
 - Kennwort für sudo
 
@@ -62,24 +62,63 @@ Interface Options:
 - SSH-port ändern
   > 1288
 
-## Node.js
+## Installation von Software
 
-## 3. Install Node/NPM
+### git
 
-```sh
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+Webseite: <https://git-scm.com/>
+
+``` bash
+sudo apt-get install git
+
+// Test
+git --version
+```  
+
+### Node
+
+Webseite: <https://nodejs.org/en/>
+
+Die Installation ist hier beschrieben: <https://github.com/nodesource/distributions>
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
+
 sudo apt-get install -y nodejs
+
+// Test
 node --version
 npm --version
 ```
 
-- Git
+### PM2 Process Management
 
-  > sudo apt-get install git
+Webseite: <https://pm2.keymetrics.io/>
 
-  ```sh
-  git clone yourproject.git
-  ```
+```bash
+sudo npm i pm2 -g
+
+// Test
+pm2 --version
+```
+
+### UFW firewall
+
+Webseite: --
+
+```bash
+sudo apt install ufw
+
+// Test
+ufw --version
+
+sudo ufw enable
+sudo ufw status
+sudo ufw allow ssh (Port 22)
+sudo ufw allow http (Port 80)
+sudo ufw allow https (Port 443)
+```
+
 
 ````
 
@@ -181,13 +220,7 @@ pm2 startup ubuntu
 
 ## Firewall **ufw**
 
-```script
-sudo ufw enable
-sudo ufw status
-sudo ufw allow ssh (Port 22)
-sudo ufw allow http (Port 80)
-sudo ufw allow https (Port 443)
-```
+
 
 ## FRITZ!Box 6591 Cable
 
