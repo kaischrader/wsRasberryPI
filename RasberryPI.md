@@ -36,11 +36,13 @@ Nun die Software `sudo raspi-config` starten.
 - L3 Keyboard: PC-Tastatur mit 105 Tasten (intl)
 - L4 WLAN Country: DE Germany
 
-## Absicherung
+## Absicherung des Systems
+
+Eine ausführliche Beschreibung ist hier zu finden: <https://raspberrytips.com/security-tips-raspberry-pi/>
 
 - Neuen Nutzer anlegen: **kai**, **tuongvy01**
 
-```bash
+  ```sh
   sudo adduser `<username>`
 
   // sudo Privilegien zuweisen
@@ -49,15 +51,50 @@ Nun die Software `sudo raspi-config` starten.
   // pi-Benutzer löschen
   sudo pkill -u pi
   sudo deluser -remove-home pi
-```  
+  ```  
+
+- Regelmäßig das System aktualisieren:
+  
+  ```sh
+  sudo apt update
+  sudo apt upgrade
+  ```
+  
+  Automatisierung der Aktualisierung:
+
+  ```sh
+  sudo apt install unattended-upgrades
+
+  // Konfiguration:
+  sudo nano /etc/apt/apt.conf.d/50unattended-upgrades
+
+  // Folgende Zeile aktivieren:
+  Unattended-Upgrade::Mail "kai";
+
+  // Konfiguration Aktualisierungsintervall:
+  sudo nano /etc/apt/apt.conf.d/02periodic
+
+  // Dort einfügen:
+  APT::Periodic::Enable "1";
+  APT::Periodic::Update-Package-Lists "1";
+  APT::Periodic::Download-Upgradeable-Packages "1";
+  APT::Periodic::Unattended-Upgrade "1";
+  APT::Periodic::AutocleanInterval "1";
+  APT::Periodic::Verbose "2";
+
+  // Test:
+  sudo unattended-upgrades -d
+  ```
 
 - Kennwort für sudo
 
-  > sudo nano /etc/sudoers.d/010_pi-nopasswd
+  ```sh
+  // Konfiguration über folgende Datei:
+  sudo nano /etc/sudoers.d/010_pi-nopasswd
 
-  > dagobert ALL=(ALL) NOPASSWD: ALL
-
-  > dagobert ALL=(ALL) PASSWD: ALL
+  // Folgende Zeile für jeden Benutzer aktivieren:
+  kai ALL=(ALL) PASSWD: ALL
+  ```
 
 - SSH-port ändern
   > 1288
