@@ -96,6 +96,48 @@ Eine ausführliche Beschreibung ist hier zu finden: <https://raspberrytips.com/s
   kai ALL=(ALL) PASSWD: ALL
   ```
 
+- Fail2ban installieren
+
+  ```sh
+  sudo apt install fail2ban
+
+  // Nach Änderungen:
+  sudo service fail2ban restart
+  ```
+
+- Firewall installieren
+  
+  ```sh
+  sudo apt install ufw
+
+  // Allow apache access for anyone
+  sudo ufw allow 80
+  sudo ufw allow 443
+  sudo ufw allow ssh // Port 22
+  sudo ufw allow http // Port 80
+  sudo ufw allow https // Port 443
+
+  // Allow SSH access for your IP address only
+  sudo ufw allow from 192.168.1.100 port 22
+
+  // Enable
+  sudo ufw enable
+
+  // display current rules
+  sudo ufw status verbose
+
+  // Test
+  ufw --version
+  ```
+
+- Logs kontrollieren
+  
+  - /var/log/syslog: main log file for all services
+  - /var/log/message: whole systems log file
+  - /var/log/auth.log: all authentication attempts are logged here
+  - /var/log/mail.log: if you have a mail server, you’ll find a trace of recent emails sent here
+  - Any critical application log file, for example /var/log/apache2/error.log or /var/log/mysql/error.log
+
 - SSH-port ändern
   > 1288
 
@@ -139,25 +181,6 @@ sudo npm i pm2 -g
 pm2 --version
 ```
 
-### UFW firewall
-
-Webseite: --
-
-```bash
-sudo apt install ufw
-
-// Test
-ufw --version
-
-sudo ufw enable
-sudo ufw status
-sudo ufw allow ssh (Port 22)
-sudo ufw allow http (Port 80)
-sudo ufw allow https (Port 443)
-```
-
-
-````
 
 - Setup PM2 process manager to keep your app running
 
@@ -174,15 +197,6 @@ pm2 flush (Clear logs)
 # To make sure app starts when reboot
 pm2 startup ubuntu
 ````
-
-System logs
-
-/var/log/syslog: main log file for all services
-/var/log/message: whole systems log file
-/var/log/auth.log: all authentication attempts are logged here
-/var/log/mail.log: if you have a mail server, you’ll find a trace of recent emails sent here
-Any critical application log file, for example /var/log/apache2/error.log or /var/log/mysql/error.log
-
 ## Basics
 
 Adressen im Heimnetz:
@@ -254,10 +268,6 @@ pm2 flush (Clear logs)
 # To make sure app starts when reboot
 pm2 startup ubuntu
 ```
-
-## Firewall **ufw**
-
-
 
 ## FRITZ!Box 6591 Cable
 
